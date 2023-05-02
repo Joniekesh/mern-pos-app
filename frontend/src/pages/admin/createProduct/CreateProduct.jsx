@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./createProduct.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../../redux/apiCalls/ProductApi";
-import Loader from "../../../components/loader/Loader";
 import { makeRequest } from "../../../utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
