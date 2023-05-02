@@ -1,0 +1,189 @@
+@import "../../../global.scss";
+
+.singleProduct {
+	@include themify($themes) {
+		min-height: 100vh;
+		display: flex;
+		background-color: themed("bgSoft");
+		color: themed("textColor");
+
+		.singleProductContainer {
+			margin-top: 50px;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			gap: 20px;
+			flex-direction: column;
+			padding: 20px;
+
+			.action {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+
+				button {
+					border: none;
+					padding: 8px;
+					font-weight: 500;
+					background-color: teal;
+					color: white;
+					cursor: pointer;
+					transition: all 0.5s ease-in-out;
+					display: flex;
+					align-items: center;
+
+					&:hover {
+						transform: scale(1.02);
+					}
+				}
+			}
+
+			.top {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				height: 135px;
+
+				.left {
+					flex: 1;
+					-webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+					box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+					background-color: themed("bg");
+					padding: 10px;
+					height: 100%;
+					border-radius: 10px;
+				}
+
+				.right {
+					-webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+					box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+					background-color: themed("bg");
+					flex: 1;
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					padding: 10px;
+					height: 100%;
+					border-radius: 10px;
+
+					.itemDetails {
+						display: flex;
+						flex-direction: column;
+						gap: 4px;
+
+						.item {
+							display: flex;
+							align-items: center;
+							font-size: 14px;
+
+							.itemName {
+								font-size: 20px;
+							}
+
+							.key {
+								flex: 1;
+								font-weight: bold;
+							}
+
+							.value {
+								flex: 1.5;
+								opacity: 0.6;
+							}
+
+							img {
+								width: 36px;
+								height: 36px;
+								border-radius: 50%;
+								object-fit: cover;
+								margin-right: 30px;
+							}
+						}
+					}
+				}
+			}
+
+			.bottom {
+				form {
+					-webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+					box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+					background-color: themed("bg");
+					padding: 10px;
+					height: 100%;
+					border-radius: 10px;
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+					font-size: 14px;
+
+					.formLeft {
+						flex: 2;
+						display: flex;
+						flex-direction: column;
+						gap: 10px;
+
+						.formInput {
+							display: flex;
+							flex-direction: column;
+							gap: 3px;
+
+							label {
+								font-size: 15px;
+							}
+
+							input {
+								border: none;
+								outline: none;
+								width: 250px;
+								padding: 8px;
+								background-color: themed("bgSoft");
+								color: themed("textColor");
+							}
+						}
+					}
+
+					.formRight {
+						flex: 1;
+						display: flex;
+						flex-direction: column;
+						gap: 20px;
+
+						.upload {
+							display: flex;
+							align-items: center;
+							gap: 10px;
+
+							img {
+								width: 50px;
+								height: 50px;
+								object-fit: cover;
+								border-radius: 5px;
+							}
+
+							.inputDiv {
+								label {
+									font-size: 20px;
+									cursor: pointer;
+								}
+							}
+						}
+
+						button {
+							width: 70px;
+							padding: 8px;
+							border: none;
+							border-radius: 5px;
+							background-color: teal;
+							color: white;
+							cursor: pointer;
+							transition: all 0.5s ease-in-out;
+
+							&:hover {
+								transform: scale(1.02);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

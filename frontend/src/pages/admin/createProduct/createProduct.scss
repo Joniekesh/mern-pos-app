@@ -1,0 +1,66 @@
+@import "../../../global.scss";
+
+.createProduct {
+	@include themify($themes) {
+		min-height: 100vh;
+		display: flex;
+		background-color: themed("bgSoft");
+		color: themed("textColor");
+
+		.createProductContainer {
+			margin-top: 50px;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			gap: 20px;
+			flex-direction: column;
+			padding: 20px;
+
+			form {
+				-webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+				box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+				background-color: themed("bg");
+				color: themed("textColor");
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+				padding: 10px;
+				border-radius: 10px;
+				width: max-content;
+				font-size: 15px;
+
+				.formInput {
+					display: flex;
+					flex-direction: column;
+
+					label {
+						font-weight: 500;
+					}
+
+					input {
+						outline: none;
+						border: none;
+						padding: 8px;
+						background-color: themed("bgSoft");
+						color: themed("textColor");
+					}
+				}
+
+				button {
+					background-color: teal;
+					color: white;
+					border: none;
+					padding: 8px;
+					cursor: pointer;
+					border-radius: 5px;
+					transition: all 0.5s ease-in-out;
+					font-size: 16px;
+
+					&:hover {
+						transform: scale(1.02);
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,62 @@
+@import "../../global.scss";
+
+.catItem {
+	@include themify($themes) {
+		display: flex;
+		flex-direction: column;
+
+		.catDetails {
+			display: flex;
+			justify-content: space-between;
+
+			img {
+				width: 50px;
+				height: 50px;
+				border-radius: 5px;
+				object-fit: cover;
+			}
+
+			.catDetails {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 5px;
+
+				.producTitle {
+					font-weight: 500;
+				}
+
+				.btns {
+					display: flex;
+					align-items: center;
+					gap: 6px;
+					font-weight: bold;
+				}
+			}
+
+			.productPrice {
+				font-weight: 400;
+				color: green;
+			}
+
+			.actions {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-end;
+				gap: 10px;
+
+				.trash {
+					color: crimson;
+					cursor: pointer;
+					font-weight: 600;
+					font-size: 18px;
+				}
+			}
+		}
+
+		.line {
+			margin: 5px 0;
+			border: 1.5px dotted themed("border");
+		}
+	}
+}

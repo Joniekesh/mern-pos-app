@@ -1,0 +1,19 @@
+@import "../../global.scss";
+
+.home {
+	@include themify($themes) {
+		min-height: 100vh;
+		display: flex;
+
+		.products {
+			background-color: themed("bgSoft");
+			flex: 6;
+			padding: 20px;
+			margin-top: 50px;
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px;
+			justify-content: center;
+		}
+	}
+}

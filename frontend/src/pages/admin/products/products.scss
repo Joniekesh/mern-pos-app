@@ -1,0 +1,121 @@
+@import "../../../global.scss";
+
+.products {
+	@include themify($themes) {
+		min-height: 100vh;
+		display: flex;
+		background-color: themed("bgSoft");
+		color: themed("textColor");
+
+		.productsContainer {
+			margin-top: 50px;
+			height: 100%;
+			width: 100%;
+			display: flex;
+			gap: 20px;
+			flex-direction: column;
+			padding: 20px;
+
+			.top {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+
+				button {
+					border: none;
+					padding: 8px;
+					font-weight: 500;
+					background-color: teal;
+					color: white;
+					cursor: pointer;
+					transition: all 0.5s ease-in-out;
+					display: flex;
+					align-items: center;
+
+					&:hover {
+						transform: scale(1.02);
+					}
+				}
+			}
+
+			.table {
+				-webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+				box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+				background-color: themed("bg");
+				color: themed("textColor");
+				display: flex;
+				padding: 10px;
+				overflow-x: auto;
+				width: 100%;
+				font-size: 14px;
+
+				table {
+					border-collapse: collapse;
+					border-spacing: 0;
+					width: 100%;
+					// border: 1px solid #ddd;
+
+					thead {
+						tr {
+							th {
+								text-align: left;
+								padding: 8px;
+							}
+						}
+					}
+
+					tbody {
+						width: 100%;
+
+						tr {
+							&:nth-child(odd) {
+								background-color: themed("bgSoft");
+							}
+							&:hover:nth-child(odd) {
+								background-color: orange;
+							}
+
+							td {
+								padding: 6px;
+								.cashierInfo {
+									display: flex;
+									align-items: center;
+									gap: 6px;
+
+									.image {
+										width: 32px;
+										height: 32px;
+										border-radius: 50%;
+										object-fit: cover;
+									}
+								}
+
+								.action {
+									display: flex;
+									align-items: center;
+									justify-content: space-between;
+								}
+								.view {
+									border: 1px solid rgb(5, 182, 5);
+									cursor: pointer;
+									padding: 3px 6px;
+								}
+
+								.trash {
+									font-size: 16px;
+									cursor: pointer;
+									color: crimson;
+								}
+							}
+
+							.amount {
+								color: green;
+								font-weight: bold;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

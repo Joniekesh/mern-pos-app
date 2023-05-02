@@ -1,0 +1,134 @@
+@import "../../global.scss";
+
+.navBar {
+	@include themify($themes) {
+		width: 100vw;
+		height: 60px;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-color: themed("bg");
+		color: themed("textColor");
+		z-index: 3;
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 10px 50px;
+
+			.left {
+				width: 300px;
+				border: 1px solid themed("border");
+				padding: 8px;
+				border-radius: 8px;
+
+				.search {
+					width: 100%;
+					display: flex;
+					align-items: center;
+					gap: 5px;
+					background-color: themed("bgSoft");
+					color: themed("textColor");
+
+					span {
+						font-size: 20px;
+					}
+
+					input {
+						width: 100%;
+						background-color: transparent;
+						border: none;
+						outline: none;
+						color: themed("textColor");
+					}
+
+					.searchBtn {
+						background-color: themed("bg");
+						color: themed("textColor");
+						padding: 2px;
+						font-size: 15px;
+						cursor: pointer;
+
+						&:disabled {
+							cursor: not-allowed;
+						}
+					}
+				}
+			}
+
+			.right {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				position: relative;
+
+				.icon {
+					cursor: pointer;
+					font-size: 18px;
+				}
+
+				img {
+					width: 32px;
+					height: 32px;
+					border-radius: 50%;
+					object-fit: cover;
+				}
+
+				.userInfo {
+					display: flex;
+					flex-direction: column;
+					gap: 3px;
+
+					.welcome {
+						font-weight: 600;
+					}
+
+					.cashier {
+						font-size: 13px;
+						font-weight: 300;
+					}
+				}
+
+				.dropDown {
+					position: absolute;
+					top: 48px;
+					right: -33px;
+					z-index: 999;
+					background-color: themed("bgSoft");
+					color: themed("textXolor");
+					display: flex;
+					gap: 20px;
+					flex-direction: column;
+					padding: 20px 10px;
+					width: 200px;
+					height: max-content;
+
+					button {
+						width: 100%;
+						padding: 6px;
+						font-weight: 500;
+						cursor: pointer;
+						border: none;
+						font-size: 14px;
+						border-radius: 5px;
+						transition: all 0.5s ease-in-out;
+
+						&:hover {
+							transform: scale(1.03);
+						}
+					}
+
+					.dashBtn {
+						background-color: teal;
+						color: white;
+					}
+
+					.logoutBtn {
+						background-color: crimson;
+						color: white;
+					}
+				}
+			}
+		}
+	}
+}
