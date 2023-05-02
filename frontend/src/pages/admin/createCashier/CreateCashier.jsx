@@ -15,11 +15,6 @@ const CreateCashier = () => {
 	const navigate = useNavigate();
 
 	const { loading } = useSelector((state) => state.user);
-	const { currentUser } = useSelector((state) => state.auth);
-
-	useEffect(() => {
-		currentUser?.user && !currentUser?.user.isAdmin && navigate("/");
-	}, [currentUser]);
 
 	const [inputs, setInputs] = useState({
 		name: "",

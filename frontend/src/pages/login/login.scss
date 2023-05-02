@@ -1,19 +1,22 @@
+@import "../../global.scss";
+
 .login {
 	width: 100vw;
 	height: 100vh;
 	background: url("../../assets/pos-bg.jpeg") repeat center;
+	// overflow: hidden;
 
 	.container {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
 		gap: 50px;
+		// width: 100%;
 
 		.top {
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			color: darkblue;
 			margin-top: 20px;
 
 			.logoContainer {
@@ -42,6 +45,13 @@
 			border-radius: 10px;
 			padding: 20px;
 
+			@include mobile {
+				width: 100vw;
+				border-radius: 0;
+				height: 70%;
+				padding: 0px;
+			}
+
 			.icon {
 				font-size: 50px;
 				color: crimson;
@@ -58,6 +68,10 @@
 					width: 90%;
 					display: flex;
 					flex-direction: column;
+
+					@include mobile {
+						width: 100%;
+					}
 
 					label {
 						font-weight: 500;
@@ -86,6 +100,10 @@
 					transition: all 0.5s ease-in-out;
 					font-weight: 500;
 					font-size: 16px;
+
+					@include mobile {
+						border-radius: 0;
+					}
 
 					&:hover {
 						transform: scale(1.03);
