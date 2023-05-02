@@ -8,7 +8,6 @@ import { deleteUser, getUsers } from "../../../redux/apiCalls/UserApiCalls";
 import { BiTrashAlt } from "react-icons/bi";
 
 const Cashiers = () => {
-	const { profile } = useSelector((state) => state.profile);
 	const { users, loading } = useSelector((state) => state.user);
 
 	const navigate = useNavigate();
@@ -17,10 +16,6 @@ const Cashiers = () => {
 	const handleNavigate = (user) => {
 		navigate(`/dashboard/cashiers/${user._id}`, { state: user });
 	};
-
-	useEffect(() => {
-		profile && !profile.isAdmin && navigate("/");
-	}, []);
 
 	useEffect(() => {
 		dispatch(getUsers());

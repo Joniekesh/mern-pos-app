@@ -9,7 +9,6 @@ import Loader from "../../../components/loader/Loader";
 import { deleteProduct } from "../../../redux/apiCalls/ProductApi";
 
 const Products = () => {
-	const { profile } = useSelector((state) => state.profile);
 	const { products, loading } = useSelector((state) => state.product);
 
 	const navigate = useNavigate();
@@ -18,10 +17,6 @@ const Products = () => {
 	const handleNavigate = (product) => {
 		navigate(`/dashboard/products/${product._id}`, { state: product });
 	};
-
-	useEffect(() => {
-		profile && !profile.isAdmin && navigate("/");
-	}, []);
 
 	return (
 		<div className="products">

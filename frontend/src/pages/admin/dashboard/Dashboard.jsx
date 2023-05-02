@@ -4,12 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CiWavePulse1 } from "react-icons/ci";
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
-import axios from "axios";
 import {
 	getAllSales,
 	getLatestSales,
 } from "../../../redux/apiCalls/SalesApiCalls";
-import { toast } from "react-toastify";
 import Loader from "../../../components/loader/Loader";
 import { getUsers } from "../../../redux/apiCalls/UserApiCalls";
 import { getProducts } from "../../../redux/apiCalls/ProductApi";
@@ -19,7 +17,6 @@ import { makeRequest } from "../../../utils/axiosInstance";
 const Dashboard = () => {
 	const [stats, setStats] = useState([]);
 
-	const { profile } = useSelector((state) => state.profile);
 	const { latestSales, allSales, loading } = useSelector((state) => state.sale);
 	const { users } = useSelector((state) => state.user);
 	const { products } = useSelector((state) => state.product);
@@ -72,10 +69,6 @@ const Dashboard = () => {
 			}
 		};
 		fetchStats();
-	}, []);
-
-	useEffect(() => {
-		profile && !profile.isAdmin && navigate("/");
 	}, []);
 
 	useEffect(() => {

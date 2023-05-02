@@ -6,15 +6,10 @@ import { getAllSales } from "../../../redux/apiCalls/SalesApiCalls";
 import Loader from "../../../components/loader/Loader";
 
 const Orders = () => {
-	const { profile } = useSelector((state) => state.profile);
 	const { allSales, loading } = useSelector((state) => state.sale);
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		profile && !profile.isAdmin && navigate("/");
-	}, []);
 
 	useEffect(() => {
 		dispatch(getAllSales());
