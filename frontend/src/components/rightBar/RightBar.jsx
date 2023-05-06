@@ -3,11 +3,10 @@ import CatItem from "../cartItem/CartItem";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../redux/reducers/CartRedux";
 import { useRef, useState } from "react";
-import { ComponentToPrint } from "../componentToPrint/ComponentToPrint";
-import { useReactToPrint } from "react-to-print";
 import { makeRequest } from "../../utils/axiosInstance";
 import { toast } from "react-toastify";
 import Loader from "../loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const RightBar = () => {
 	const [data, setData] = useState(null);
@@ -16,6 +15,7 @@ const RightBar = () => {
 	const type = window.location.href.indexOf("dashboard") > -1;
 
 	const componentRef = useRef();
+	const navigate = useNavigate();
 
 	const { products, quantity, total } = useSelector((state) => state.cart);
 	const { currentUser } = useSelector((state) => state.auth);
@@ -27,10 +27,6 @@ const RightBar = () => {
 	const handleClear = () => {
 		dispatch(clearCart());
 	};
-
-	const handleReactToPrint = useReactToPrint({
-		content: () => componentRef.current,
-	});
 
 	const newSale = {
 		user: user._id,
@@ -56,12 +52,13 @@ const RightBar = () => {
 		try {
 			const res = await makeRequest.post("/sales", newSale, config);
 
-			if (res.status === 200 && user) {
-				handleReactToPrint();
+			if (res.status === 200) {
+				// handleReactToPrint();
 				setData(res.data);
 				setLoading(false);
 				toast.success("Order successfully created", { theme: "colored" });
 				dispatch(clearCart());
+				navigate(`/orders/${res.data._id}`, { state: res.data });
 			}
 		} catch (error) {
 			setLoading(false);
@@ -72,17 +69,6 @@ const RightBar = () => {
 
 	return (
 		<div className="rightBar" style={{ display: type && "none" }}>
-			<div style={{ display: "none" }}>
-				<ComponentToPrint
-					ref={componentRef}
-					products={products}
-					quantity={quantity}
-					total={total}
-					user={user}
-					orderId={data?._id}
-					createdAt={data?.createdAt}
-				/>
-			</div>
 			{products.length > 0 ? (
 				<div className="container">
 					<h2>Current Order (VAT inclusive)</h2>

@@ -12,6 +12,7 @@ import { clearCart } from "../../redux/reducers/CartRedux";
 
 const NavBar = () => {
 	const [open, setOpen] = useState(false);
+
 	const [query, setQuery] = useState("");
 
 	const dispatch = useDispatch();
@@ -46,8 +47,13 @@ const NavBar = () => {
 	};
 
 	const handleOrdersNavigate = () => {
-		navigate(`/cashiers/orders/${user._id}`);
+		navigate(`/cashiers/orders/me`);
 		setOpen(false);
+	};
+
+	const handleNotification = () => {
+		setOpen(false);
+		setOpenNotification(true);
 	};
 
 	return (

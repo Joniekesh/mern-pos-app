@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import "./orders.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllSales } from "../../../redux/apiCalls/SalesApiCalls";
+import { deleteSale, getAllSales } from "../../../redux/apiCalls/SalesApiCalls";
 import Loader from "../../../components/loader/Loader";
 
 const Orders = () => {
@@ -10,6 +10,10 @@ const Orders = () => {
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
+
+	const handleNavigate = (sale) => {
+		navigate(`/orders/${sale._id}`, { state: sale });
+	};
 
 	useEffect(() => {
 		dispatch(getAllSales());
@@ -52,7 +56,18 @@ const Orders = () => {
 										<td>{new Date(sale.createdAt).toLocaleString()}</td>
 										<td className="amount">$ {sale.total}</td>
 										<td>
-											<span className="view">View</span>
+											<span
+												className="view"
+												onClick={() => handleNavigate(sale)}
+											>
+												View
+											</span>
+											<span
+												style={{ cursor: "pointer" }}
+												onClick={() => dispatch(deleteSale(sale._id))}
+											>
+												delete
+											</span>
 										</td>
 									</tr>
 								))}

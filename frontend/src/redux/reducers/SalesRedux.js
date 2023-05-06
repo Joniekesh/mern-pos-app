@@ -44,6 +44,12 @@ const salesSlice = createSlice({
 			state.loading = false;
 			state.error = action.payload;
 		},
+		removeSale: (state, action) => {
+			state.allSales.splice(
+				state.allSales.findIndex((sale) => sale._id === action.payload._id),
+				1
+			);
+		},
 	},
 });
 
@@ -57,5 +63,6 @@ export const {
 	getCashierSalesRequest,
 	getCashierSalesSuccess,
 	getCashierSalesFailure,
+	removeSale,
 } = salesSlice.actions;
 export default salesSlice.reducer;

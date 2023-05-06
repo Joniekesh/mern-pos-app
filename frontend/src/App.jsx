@@ -18,7 +18,7 @@ import Dashboard from "./pages/admin/dashboard/Dashboard";
 import Cashiers from "./pages/admin/cashiers/Cashiers";
 import Products from "./pages/admin/products/Products";
 import Orders from "./pages/admin/orders/Orders";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProfile } from "./redux/apiCalls/ProfileApi";
 import Transactions from "./pages/admin/transactions/Transactions";
 import SingleProduct from "./pages/admin/singleProduct/SingleProduct";
@@ -26,6 +26,7 @@ import CreateProduct from "./pages/admin/createProduct/CreateProduct";
 import CreateCashier from "./pages/admin/createCashier/CreateCashier";
 import SingleCashier from "./pages/admin/singleCashier/SingleCashier";
 import CashierOrders from "./pages/cashierOrders/CashierOrders";
+import SingleOrder from "./pages/singleOrder/SingleOrder";
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -43,12 +44,6 @@ const App = () => {
 	useEffect(() => {
 		dispatch(getProfile());
 	}, [dispatch]);
-
-	const config = {
-		headers: {
-			Authorization: `Bearer ${currentUser?.token}`,
-		},
-	};
 
 	const Layout = () => {
 		return (
@@ -128,7 +123,11 @@ const App = () => {
 					element: <CreateCashier />,
 				},
 				{
-					path: "/cashiers/orders/:id",
+					path: "/orders/:id",
+					element: <SingleOrder />,
+				},
+				{
+					path: "/cashiers/orders/me",
 					element: <CashierOrders />,
 				},
 			],

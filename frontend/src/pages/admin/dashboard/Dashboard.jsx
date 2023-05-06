@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./dashboard.scss";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { CiWavePulse1 } from "react-icons/ci";
 import { FiArrowDown, FiArrowUp } from "react-icons/fi";
@@ -17,6 +17,8 @@ import { makeRequest } from "../../../utils/axiosInstance";
 const Dashboard = () => {
 	const [stats, setStats] = useState([]);
 
+	// console.log(singleSale);
+
 	const { latestSales, allSales, loading } = useSelector((state) => state.sale);
 	const { users } = useSelector((state) => state.user);
 	const { products } = useSelector((state) => state.product);
@@ -27,6 +29,10 @@ const Dashboard = () => {
 	allSales.map((sale) => {
 		total += sale.total;
 	});
+
+	const handleNavigate = (sale) => {
+		navigate(`/orders/${sale?._id}`, { state: sale });
+	};
 
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -151,12 +157,12 @@ const Dashboard = () => {
 								<span className="value">{users.length}</span>
 								<div
 									className="growthPercent"
-									style={{ color: "crimson", fontWeight: "500" }}
+									style={{ color: "green", fontWeight: "500" }}
 								>
 									<span className="arrow">
-										<FiArrowDown />
+										<FiArrowUp />
 									</span>
-									<span className="perc">-1.5%</span>
+									<span className="perc">1.5%</span>
 								</div>
 							</div>
 							<div className="right">
@@ -202,7 +208,12 @@ const Dashboard = () => {
 											<td>{new Date(sale.createdAt).toLocaleString()}</td>
 											<td className="amount">$ {sale.total}</td>
 											<td>
-												<span className="view">View</span>
+												<span
+													className="view"
+													onClick={() => handleNavigate(sale)}
+												>
+													View
+												</span>
 											</td>
 										</tr>
 									))}

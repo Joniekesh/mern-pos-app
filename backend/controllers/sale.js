@@ -56,7 +56,7 @@ const getLatestSales = async (req, res) => {
 	try {
 		const sales = await Sale.find()
 			.sort({ createdAt: -1 })
-			.limit(6)
+			.limit(4)
 			.populate("user", "name email phone img");
 
 		if (!sales) return res.status(404).json("Sales not found.");
@@ -83,13 +83,18 @@ const getSale = async (req, res) => {
 	}
 };
 
-// get sale by user id (Admin only)
+// get logged in cashier sales
 const getRepSales = async (req, res) => {
+	const date = new Date();
+	const start = date.setHours(0, 0, 0, 0);
+	const end = date.setHours(23, 59, 59, 999);
 	try {
-		const sales = await Sale.find({ user: req.params.userId }).populate(
-			"user",
-			"name email phone img"
-		);
+		const sales = await Sale.find({
+			user: req.user.id,
+			createdAt: { $gte: start, $lt: end },
+		})
+			.sort({ createdAt: -1 })
+			.populate("user", "name email phone img");
 
 		if (!sales) return res.status(404).json("Sales not found.");
 
@@ -116,6 +121,16 @@ const getSalesStats = async (req, res) => {
 	}
 };
 
+// get sales statistics
+const deleteSale = async (req, res) => {
+	try {
+		await Sale.findByIdAndDelete(req.params.id);
+		res.status(200).json("Order deleted.");
+	} catch (err) {
+		res.status(500).json(err);
+	}
+};
+
 export {
 	createSale,
 	getAllSales,
@@ -123,4 +138,5 @@ export {
 	getRepSales,
 	getLatestSales,
 	getSalesStats,
+	deleteSale,
 };

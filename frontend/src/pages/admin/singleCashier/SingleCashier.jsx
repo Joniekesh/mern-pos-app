@@ -108,7 +108,7 @@ const SingleCashier = () => {
 								{file ? (
 									<img src={URL.createObjectURL(file)} alt="" />
 								) : (
-									<img src={"/upload/" + state.img} alt="" />
+									<img src={"/upload/" + state?.img} alt="" />
 								)}
 								<div className="nameAndRole">
 									<span className="uName">{state?.name}</span>
@@ -286,7 +286,7 @@ const SingleCashier = () => {
 								{file ? (
 									<img src={URL.createObjectURL(file)} alt="" />
 								) : (
-									<img src={"/upload/" + state.img} alt="" />
+									<img src={"/upload/" + state?.img} alt="" />
 								)}
 								<div className="inputDiv">
 									<label htmlFor="imgId">

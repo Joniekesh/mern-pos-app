@@ -2,17 +2,21 @@ import { useDispatch, useSelector } from "react-redux";
 import "./cashierOrders.scss";
 import { useEffect } from "react";
 import { getCashierSales } from "../../redux/apiCalls/SalesApiCalls";
-import { useParams } from "react-router-dom";
 import Loader from "../../components/loader/Loader";
+import { useNavigate } from "react-router-dom";
 
 const CashierOrders = () => {
 	const dispatch = useDispatch();
-	const { id } = useParams();
+	const navigate = useNavigate();
 
 	const { cashierSales, loading } = useSelector((state) => state.sale);
 
+	const handleNavigate = (sale) => {
+		navigate(`/orders/${sale._id}`, { state: sale });
+	};
+
 	useEffect(() => {
-		dispatch(getCashierSales(id));
+		dispatch(getCashierSales());
 	}, [dispatch]);
 
 	return (
@@ -50,7 +54,12 @@ const CashierOrders = () => {
 										<td>{new Date(sale.createdAt).toLocaleString()}</td>
 										<td className="amount">$ {sale.total}</td>
 										<td>
-											<span className="view">View</span>
+											<span
+												className="view"
+												onClick={() => handleNavigate(sale)}
+											>
+												View
+											</span>
 										</td>
 									</tr>
 								))}

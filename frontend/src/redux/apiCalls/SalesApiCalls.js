@@ -10,6 +10,7 @@ import {
 	getLatestSalesFailure,
 	getLatestSalesRequest,
 	getLatestSalesSuccess,
+	removeSale,
 } from "../reducers/SalesRedux";
 
 const getLatestSales = () => async (dispatch, getState) => {
@@ -58,7 +59,7 @@ const getAllSales = () => async (dispatch, getState) => {
 	}
 };
 
-const getCashierSales = (id) => async (dispatch, getState) => {
+const getCashierSales = () => async (dispatch, getState) => {
 	const {
 		auth: { currentUser },
 	} = getState();
@@ -70,7 +71,7 @@ const getCashierSales = (id) => async (dispatch, getState) => {
 	};
 	dispatch(getCashierSalesRequest());
 	try {
-		const res = await makeRequest.get(`/sales/user/${id}`, config);
+		const res = await makeRequest.get(`/sales/me`, config);
 		if (res.status === 200) {
 			dispatch(getCashierSalesSuccess(res.data));
 		}
@@ -82,4 +83,27 @@ const getCashierSales = (id) => async (dispatch, getState) => {
 	}
 };
 
-export { getLatestSales, getAllSales, getCashierSales };
+const deleteSale = (id) => async (dispatch, getState) => {
+	const {
+		auth: { currentUser },
+	} = getState();
+
+	const config = {
+		headers: {
+			Authorization: `Bearer ${currentUser?.token}`,
+		},
+	};
+	try {
+		const res = await makeRequest.delete(`/sales/${id}`, config);
+		if (res.status === 200) {
+			dispatch(removeSale(res.data));
+			toast.success(res.data, { theme: "colored" });
+		}
+	} catch (err) {
+		console.log(err);
+
+		toast.error("Something went wrong!", { theme: "colored" });
+	}
+};
+
+export { getLatestSales, getAllSales, getCashierSales, deleteSale };
