@@ -6,6 +6,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import Loader from "../../../components/loader/Loader";
 import { deleteUser, getUsers } from "../../../redux/apiCalls/UserApiCalls";
 import { BiTrashAlt } from "react-icons/bi";
+import { FaCheck } from "react-icons/fa";
 
 const Cashiers = () => {
 	const { users, loading } = useSelector((state) => state.user);
@@ -46,6 +47,7 @@ const Cashiers = () => {
 									<th>Email</th>
 									<th>Phone</th>
 									<th>Address</th>
+									<th>Admin</th>
 									<th></th>
 								</tr>
 							</thead>
@@ -70,6 +72,13 @@ const Cashiers = () => {
 										<td>{user.email}</td>
 										<td>{user.phone}</td>
 										<td>{user.address}</td>
+										<td>
+											{user.isAdmin && (
+												<span style={{ color: "green", fontWeight: "bold" }}>
+													<FaCheck />
+												</span>
+											)}
+										</td>
 
 										<td>
 											<div className="action">

@@ -82,9 +82,9 @@ const createProduct = (inputs) => async (dispatch, getState) => {
 			toast.success("Product created.", { theme: "colored" });
 		}
 	} catch (err) {
+		console.log(err);
 		dispatch(createProductFailure(err.response.data));
 		toast.error(err.response.data, { theme: "colored" });
-		console.log(err);
 	}
 };
 

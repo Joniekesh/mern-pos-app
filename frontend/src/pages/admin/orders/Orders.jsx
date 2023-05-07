@@ -50,11 +50,20 @@ const Orders = () => {
 													alt=""
 													className="image"
 												/>
-												<span className="cashierName">{sale.user?.name}</span>
+												<span
+													style={{
+														color: "teal",
+														fontWeight: "bold",
+														fontSize: "16px",
+													}}
+													className="cashierName"
+												>
+													{sale.user?.name}
+												</span>
 											</div>
 										</td>
 										<td>{new Date(sale.createdAt).toLocaleString()}</td>
-										<td className="amount">$ {sale.total}</td>
+										<td className="amount">$ {sale.total.toFixed()}</td>
 										<td>
 											<span
 												className="view"
@@ -62,12 +71,12 @@ const Orders = () => {
 											>
 												View
 											</span>
-											<span
+											{/* <span
 												style={{ cursor: "pointer" }}
 												onClick={() => dispatch(deleteSale(sale._id))}
 											>
 												delete
-											</span>
+											</span> */}
 										</td>
 									</tr>
 								))}

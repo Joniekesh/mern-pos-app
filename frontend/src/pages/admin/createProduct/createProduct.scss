@@ -59,6 +59,11 @@
 					&:hover {
 						transform: scale(1.02);
 					}
+
+					&:disabled {
+						cursor: not-allowed;
+						opacity: 0.5;
+					}
 				}
 			}
 		}

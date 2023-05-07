@@ -6,7 +6,6 @@ import authRoute from "./routes/auth.js";
 import userRoute from "./routes/user.js";
 import productRoute from "./routes/product.js";
 import saleRoute from "./routes/sale.js";
-import notificationRoute from "./routes/notification.js";
 
 import connectDB from "./config/db.js";
 import multer from "multer";
@@ -41,7 +40,6 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/products", productRoute);
 app.use("/api/sales", saleRoute);
-app.use("/api/notifications", notificationRoute);
 
 const PORT = process.env.PORT || 5000;
 

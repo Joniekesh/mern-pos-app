@@ -41,16 +41,12 @@ const register = async (req, res) => {
 
 // login user
 const login = async (req, res) => {
-	const { email, ipAddress } = req.body;
+	const { email } = req.body;
 
 	try {
 		const user = await User.findOne({ email });
 
 		if (!user) return res.status(400).json("Invalid email/Password");
-		if (user.ipAddress !== ipAddress)
-			return res
-				.status(401)
-				.json("You are not authorized to access this system!");
 
 		const isMatch = await bcrypt.compareSync(req.body.password, user.password);
 

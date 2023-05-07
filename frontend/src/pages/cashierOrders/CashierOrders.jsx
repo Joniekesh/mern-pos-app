@@ -15,6 +15,11 @@ const CashierOrders = () => {
 		navigate(`/orders/${sale._id}`, { state: sale });
 	};
 
+	let total = 0;
+	cashierSales.map((sale) => {
+		total += sale.total;
+	});
+
 	useEffect(() => {
 		dispatch(getCashierSales());
 	}, [dispatch]);
@@ -22,7 +27,10 @@ const CashierOrders = () => {
 	return (
 		<div className="cashierOrders">
 			<div className="cashierOrdersContainer">
-				<h2>Your Today's Sales</h2>
+				<div className="top">
+					<h2>Your Today's Sales</h2>
+					<h2 className="total">$ {total.toFixed(2)}</h2>
+				</div>
 				{loading ? (
 					<Loader />
 				) : cashierSales.length > 0 ? (
@@ -48,11 +56,20 @@ const CashierOrders = () => {
 													alt=""
 													className="image"
 												/>
-												<span className="cashierName">{sale.user?.name}</span>
+												<span
+													style={{
+														color: "teal",
+														fontWeight: "bold",
+														fontSize: "16px",
+													}}
+													className="cashierName"
+												>
+													{sale.user?.name}
+												</span>
 											</div>
 										</td>
 										<td>{new Date(sale.createdAt).toLocaleString()}</td>
-										<td className="amount">$ {sale.total}</td>
+										<td className="amount">$ {sale.total.toFixed(2)}</td>
 										<td>
 											<span
 												className="view"

@@ -17,13 +17,14 @@ const createSale = async (req, res) => {
 
 			const createdSale = await newSale.save();
 
-			await Promise.all(
-				createdSale.products.map((product) => {
-					Product.findByIdAndUpdate(product._id, {
-						countInStock: { $inc: -product.qty },
-					});
-				})
-			);
+			// await Promise.all(
+			// 	createdSale.products.map(async (product) => {
+			// 		await Product.findByIdAndUpdate(product._id, {
+			// 			...product,
+			// 			countInStock: { $inc: -product.quantity },
+			// 		});
+			// 	})
+			// );
 
 			const sale = await Sale.findById(createdSale._id).populate(
 				"user",

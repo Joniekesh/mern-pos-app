@@ -30,6 +30,8 @@ const CreateProduct = () => {
 		}
 	};
 
+	const isNotValid = !file || !productName || !price || !countInStock || !desc;
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -91,7 +93,9 @@ const CreateProduct = () => {
 							onChange={(e) => setCountInStock(e.target.value)}
 						/>
 					</div>
-					<button type="submit">Create</button>
+					<button type="submit" disabled={isNotValid}>
+						Create
+					</button>
 				</form>
 			</div>
 		</div>

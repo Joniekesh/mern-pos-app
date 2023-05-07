@@ -48,9 +48,6 @@ const UserSchema = new mongoose.Schema(
 		guarantorPhone: {
 			type: String,
 		},
-		ipAddress: {
-			type: String,
-		},
 	},
 
 	{ timestamps: true }

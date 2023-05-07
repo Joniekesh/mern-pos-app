@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./navBar.scss";
 import { BsSearch, BsBell, BsSun, BsMoon } from "react-icons/bs";
+import { BiHomeAlt } from "react-icons/bi";
 import { RxCaretDown } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/reducers/AuthRedux";
@@ -9,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { setDarkMode } from "../../redux/reducers/DarkModeRedux";
 import { getProducts } from "../../redux/apiCalls/ProductApi";
 import { clearCart } from "../../redux/reducers/CartRedux";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
 	const [open, setOpen] = useState(false);
@@ -51,14 +53,12 @@ const NavBar = () => {
 		setOpen(false);
 	};
 
-	const handleNotification = () => {
-		setOpen(false);
-		setOpenNotification(true);
-	};
-
 	return (
 		<div className="navBar">
 			<div className="container">
+				<Link to="/" className="link">
+					<BiHomeAlt style={{ fontSize: "24px" }} />
+				</Link>
 				<div className="left">
 					<div className="search">
 						<span>

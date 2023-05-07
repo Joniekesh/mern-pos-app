@@ -83,12 +83,10 @@ const SingleOrder = () => {
 									<td>$ {(product.price * product.quantity).toFixed(2)}</td>
 								</tr>
 							))}
-							<tr>
-								<div className="total">
-									<span className="value">GRAND TOTAL ({state.quantity})</span>
-									<h2 className="amount">$ {state.total.toFixed()}</h2>
-								</div>
-							</tr>
+							<div className="total">
+								<span className="value">GRAND TOTAL ({state.quantity})</span>
+								<h2 className="amount">$ {state.total.toFixed()}</h2>
+							</div>
 						</tbody>
 					</table>
 				</div>
