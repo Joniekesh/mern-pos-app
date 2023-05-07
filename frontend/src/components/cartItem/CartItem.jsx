@@ -24,7 +24,7 @@ const CatItem = ({ product }) => {
 	return (
 		<div className="catItem">
 			<div className="catDetails">
-				<img src="/upload/pos-bg2.jpeg" alt="" />
+				<img src={"/upload/" + product.img} alt="" />
 				<div className="catDetails">
 					<span className="producTitle">{product.productName}</span>
 					<div className="btns">
